@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:src/main/java/com/its/mergeplan_v1/config/auth/controller/TestController.java
-package com.its.mergeplan_v1.config.auth.controller;
-========
 package com.its.mergeplan_v1.controller;
->>>>>>>> d83ba7c493204a7a49678342913b7f3f9458d161:src/main/java/com/its/mergeplan_v1/controller/TestController.java
 
 import com.its.mergeplan_v1.entity.Test;
 import com.its.mergeplan_v1.service.TestService;
