@@ -1,4 +1,4 @@
-package com.its.mergeplan_v1.controller;
+package com.its.mergeplan_v1.config.auth.controller;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
 import com.its.mergeplan_v1.entity.User;
