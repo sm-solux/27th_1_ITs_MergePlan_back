@@ -1,14 +1,11 @@
 package com.its.mergeplan_v1.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Data
 @Entity
@@ -17,9 +14,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false)
     private String username;
+
+    @Column(nullable = false)
     private String password;
+
     private String role;
+
+    @Column(nullable = false)
+    private Date birthday;
+
+    private boolean active = true;  // 탈퇴시 false로
+
+    @CreationTimestamp
+    private Timestamp createDate;
 //    private String roles;  // USER, ADMIN
 
 //    public List<String> getRoleList(){
