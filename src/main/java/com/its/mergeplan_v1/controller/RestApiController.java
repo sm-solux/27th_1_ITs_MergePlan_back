@@ -1,8 +1,10 @@
 package com.its.mergeplan_v1.controller;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
+import com.its.mergeplan_v1.dto.PostUser;
 import com.its.mergeplan_v1.entity.User;
 import com.its.mergeplan_v1.repository.UserRepository;
+import com.its.mergeplan_v1.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class RestApiController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
@@ -25,11 +27,12 @@ public class RestApiController {
     }
 
     @PostMapping("join")  // 회원가입 api
-    public String join(@RequestBody User user){
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRole("ROLE_USER");
-        userRepository.save(user);
-        return "회원가입 완료";
+    public User join(@RequestBody PostUser postUser){
+        //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        //user.setRole("ROLE_USER");
+        //userRepository.save(user);
+        return userService.PostUser(postUser);
+        //return "회원가입 완료";
     }
 
     // user권한만 접근가능

@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostPlannerReq {
+public class PostPlanner {
     private User user;
     private boolean allday;
     private Timestamp startTime;
@@ -25,7 +25,6 @@ public class PostPlannerReq {
 
     public Planner toEntity(boolean allday, Timestamp startDatetime, Timestamp endDatetime, String title, Category category, String description){
         return Planner.builder()
-//                .user(user)
                 .allday(allday)
                 .startDatetime(startDatetime)
                 .endDatetime(endDatetime)

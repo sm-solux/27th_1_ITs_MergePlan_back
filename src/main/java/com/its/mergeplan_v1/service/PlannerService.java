@@ -1,7 +1,7 @@
 package com.its.mergeplan_v1.service;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
-import com.its.mergeplan_v1.dto.PostPlannerReq;
+import com.its.mergeplan_v1.dto.PostPlanner;
 import com.its.mergeplan_v1.entity.Planner;
 import com.its.mergeplan_v1.entity.User;
 import com.its.mergeplan_v1.repository.PlannerRepository;
@@ -19,10 +19,9 @@ public class PlannerService {
     private final UserRepository userRepository;
 
     @Transactional
-    public String createPlan(PrincipalDetails principalDetails, PostPlannerReq postPlannerReq){
+    public Planner createPlan(PrincipalDetails principalDetails, PostPlanner postPlannerReq){
         User user = userRepository.findById(principalDetails.getUser().getId());
         Planner planner = postPlannerReq.toEntity(postPlannerReq.isAllday(), postPlannerReq.getStartTime(), postPlannerReq.getEndTime(), postPlannerReq.getTitle(), postPlannerReq.getCategory(), postPlannerReq.getDescription());
-        plannerRepository.save(planner);
-        return "완료";
+        return plannerRepository.save(planner);
     }
 }
