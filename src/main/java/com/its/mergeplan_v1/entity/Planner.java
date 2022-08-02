@@ -21,9 +21,9 @@ public class Planner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     private boolean allday;  // 하루종일 하는 일정인지
 
