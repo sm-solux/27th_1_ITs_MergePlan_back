@@ -19,7 +19,7 @@ public class CorsConfig {
         config.addAllowedHeader("*");  // 모든 header의 응답을 허용
         config.addAllowedMethod("*");  // 모든 post, get, delete, patch요청을 허용하겠다
 
-        config.addExposedHeader(JwtProperties.HEADER_STRING);
+        config.addExposedHeader(JwtProperties.HEADER_STRING);   // react header 참조
         source.registerCorsConfiguration("/api/**", config);  // "/api/**"로 오는 모든 설정은 config설정을 따른다
         return new CorsFilter(source);
     }
