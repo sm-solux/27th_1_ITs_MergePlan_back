@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 
 @Builder
@@ -24,7 +25,10 @@ public class User {
     private long id;
 
     @Column(nullable = false)
-    private String username;
+    private String username;  // 아이디
+
+    @Column(nullable = false)
+    private String username_k;  // 유저 이름
 
     @Column(nullable = false)
     private String password;
@@ -36,6 +40,9 @@ public class User {
     private Date birthday;
 
     private boolean active = true;  // 탈퇴시 false로
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Planner> plannerList;
 
     @CreationTimestamp
     private Timestamp createDate;

@@ -15,15 +15,17 @@ import java.util.Date;
 @NoArgsConstructor
 public class PostUser {
     private String username;
+    private String username_k;
     private String password;
     private String role = "ROLE_USER";
     private Date birthday;
     private boolean active = true;
     private Timestamp createDate;
 
-    public User toEntity(String username, String password, String role, Date birthday, boolean active, Timestamp createDate){
+    public User toEntity(String username, String username_k, String password, String role, Date birthday, boolean active, Timestamp createDate){
         return User.builder()
                 .username(username)
+                .username_k(username_k)
                 .password(password)
                 .role(role)
                 .birthday(birthday)
