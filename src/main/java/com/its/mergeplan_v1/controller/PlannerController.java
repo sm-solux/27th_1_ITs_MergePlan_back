@@ -1,7 +1,8 @@
 package com.its.mergeplan_v1.controller;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
-import com.its.mergeplan_v1.dto.PostPlannerReq;
+import com.its.mergeplan_v1.dto.PostPlanner;
+import com.its.mergeplan_v1.entity.Planner;
 import com.its.mergeplan_v1.service.PlannerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -16,9 +17,8 @@ public class PlannerController {
     private final PlannerService plannerService;
 
     @PostMapping("/auth/planner")
-    public String createPlan(Authentication authentication, @RequestBody PostPlannerReq postPlannerReq){
+    public Planner setPlan(Authentication authentication, @RequestBody PostPlanner postPlannerReq){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-        plannerService.createPlan(principalDetails, postPlannerReq);
-        return "플랜 생성 완료";
+        return plannerService.createPlan(principalDetails, postPlannerReq);
     }
 }
