@@ -2,6 +2,8 @@ package com.its.mergeplan_v1.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -9,6 +11,7 @@ import java.util.Date;
 
 @Data
 @Entity
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +26,7 @@ public class User {
     private String role;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthday;
 
     private boolean active = true;  // 탈퇴시 false로
