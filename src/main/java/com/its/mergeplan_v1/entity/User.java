@@ -41,8 +41,8 @@ public class User {
 
     private boolean active = true;  // 탈퇴시 false로
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Planner> plannerList;
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private List<Planner> plannerList;
 
     @CreationTimestamp
     private Timestamp createDate;
