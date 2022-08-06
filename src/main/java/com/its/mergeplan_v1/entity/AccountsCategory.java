@@ -19,7 +19,7 @@ public class AccountsCategory {
     private long id;
 
     @Column(nullable = false, name = "user_id")
-    private int userId;
+    private long userId;
 
     @Column(nullable = false)
     private int type;  // 대구분, 소구분
