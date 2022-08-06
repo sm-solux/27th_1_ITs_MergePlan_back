@@ -27,5 +27,9 @@ public class AccountsItemView {
     @Column(name = "minus")
     private int minus;
 
-    //private int total;
+    @Transient
+    private int total = plus-minus;
+
+    @Column(name="planner_id")
+    private int plannerId;
 }
