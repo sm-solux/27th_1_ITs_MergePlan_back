@@ -33,6 +33,9 @@ public class AccountsItem {
     @Column(name = "item_datetime")
     private Date itemDatetime;
 
+    @Column(name = "item_kind")
+    private boolean itemKind;
+
     @Column(name = "item_first")
     private int itemFirst;
 
@@ -41,6 +44,9 @@ public class AccountsItem {
 
     @Column(name = "item_title")
     private String itemTitle;
+
+    @Column(name="item_price")
+    private int itemPrice;
 
     @Column(name = "planner_id")
     private int plannerId;
