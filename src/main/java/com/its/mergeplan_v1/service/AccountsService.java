@@ -18,7 +18,8 @@ public class AccountsService {
     @Transactional
     public AccountsCategory saveCategory(PrincipalDetails principalDetails, PostAccountsCategory postAccountsCategory){
         AccountsCategory accountsCategory = postAccountsCategory.toEntity(
-                postAccountsCategory.getUserId(),
+                principalDetails.getUser().getId(),
+                //postAccountsCategory.getUserId(),
                 postAccountsCategory.getType(),
                 postAccountsCategory.getFirst(),
                 postAccountsCategory.getFirstId(),

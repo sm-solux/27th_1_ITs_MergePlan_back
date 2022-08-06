@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostAccountsCategory {
-    private int userId;
+    private long userId;
     private int type;
     private String first;
     private int firstId;
     private String second;
 
-    public AccountsCategory toEntity(int userId, int type, String first, int firstId, String second){
+    public AccountsCategory toEntity(long userId, int type, String first, int firstId, String second){
         return AccountsCategory.builder()
                 .userId(userId)
                 .type(type)
