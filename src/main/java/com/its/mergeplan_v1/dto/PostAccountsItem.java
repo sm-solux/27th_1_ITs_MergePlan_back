@@ -17,19 +17,23 @@ public class PostAccountsItem {
     private long userId;
     private Timestamp createDatetime;
     private Date itemDatetime;
+    private boolean itemKind;
     private int itemFirst;
     private int itemSecond;
     private String itemTitle;
+    private int itemPrice;
     private int plannerId;
 
-    public AccountsItem toEntity(long userId, Timestamp createDatetime, Date itemDatetime, int itemFirst, int itemSecond, String itemTitle, int plannerId){
+    public AccountsItem toEntity(long userId, Timestamp createDatetime, Date itemDatetime, boolean itemKind, int itemFirst, int itemSecond, String itemTitle, int itemPrice, int plannerId){
         return AccountsItem.builder()
                 .userId(userId)
                 .createDatetime(createDatetime)
                 .itemDatetime(itemDatetime)
+                .itemKind(itemKind)
                 .itemFirst(itemFirst)
                 .itemSecond(itemSecond)
                 .itemTitle(itemTitle)
+                .itemPrice(itemPrice)
                 .plannerId(plannerId)
                 .build();
     }
