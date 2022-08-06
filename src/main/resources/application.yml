@@ -9,7 +9,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mergeplan.cnfiedqcnpon.ap-northeast-2.rds.amazonaws.com:3306/mergeplan_rds
+    url: jdbc:mysql://mergeplan.cnfiedqcnpon.ap-northeast-2.rds.amazonaws.com:3306/mergeplan_rds?useSSL=false&serverTimezone=Asia/Seoul&useUnicode=yes&characterEncoding=UTF-8
     username: admin
     password: Abcd1234
 
