@@ -84,12 +84,18 @@ public class AccountsService {
     }
 
     @Transactional
-    public List<AccountsItemView> getItem(PrincipalDetails principalDetails, String year, String month){
+    public List<AccountsItem> getItem(PrincipalDetails principalDetails, String year, String month){
+        return accountsItemRepository.findByUserIdWhereMonth(principalDetails.getUser().getId(), year+"-"+month);
+    }
+
+
+    @Transactional
+    public List<AccountsItemView> getItemCalendar(PrincipalDetails principalDetails, String year, String month){
         return accountsItemViewRepository.findViewMonthly(principalDetails.getUser().getId(), year+"-"+month);
     }
 
     @Transactional
-    public List<AccountsItem> getItem(PrincipalDetails principalDetails, String year, String month, String day){
+    public List<AccountsItem> getItemCalendar(PrincipalDetails principalDetails, String year, String month, String day){
         return accountsItemRepository.findByUserIdWhereDate(principalDetails.getUser().getId(), year+"-"+month+"-"+day);
     }
 }

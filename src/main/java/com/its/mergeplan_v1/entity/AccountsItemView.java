@@ -21,6 +21,9 @@ public class AccountsItemView {
     @Column(name = "item_datetime")
     private Date itemDatetime;
 
+//    @Column(name = "item_kind")
+//    private boolean itemKind;
+
     @Column(name = "plus")
     private int plus;
 
