@@ -29,4 +29,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User deleteUser(Long user_id, User loginUser){
+        if (loginUser.getId() == user_id){
+            loginUser.setActive(false);
+            userRepository.save(loginUser);
+            return loginUser;
+        }
+        return null;
+    }
+
 }
