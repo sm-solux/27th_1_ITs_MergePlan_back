@@ -1,6 +1,7 @@
 package com.its.mergeplan_v1.service;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
+import com.its.mergeplan_v1.dto.PatchAccountsItem;
 import com.its.mergeplan_v1.dto.PostAccountsCategory;
 import com.its.mergeplan_v1.dto.PostAccountsItem;
 import com.its.mergeplan_v1.entity.AccountsCategory;
@@ -36,6 +37,11 @@ public class AccountsService {
     }
 
     @Transactional
+    public List<AccountsCategory> getCategory(){
+        return accountsCategoryRepository.findAll();
+    }
+
+    @Transactional
     public AccountsItem saveItem(PrincipalDetails principalDetails, PostAccountsItem postAccountsItem){
         AccountsItem accountsItem = postAccountsItem.toEntity(
                 principalDetails.getUser().getId(),
@@ -51,9 +57,30 @@ public class AccountsService {
     }
 
     @Transactional
+    public AccountsItem saveItem(PatchAccountsItem patchAccountsItem){
+        AccountsItem accountsItem = patchAccountsItem.toEntity(
+                patchAccountsItem.getId(),
+                patchAccountsItem.getUserId(),
+                patchAccountsItem.getCreateDatetime(),
+                patchAccountsItem.getItemDatetime(),
+                patchAccountsItem.isItemKind(),
+                patchAccountsItem.getItemFirst(),
+                patchAccountsItem.getItemSecond(),
+                patchAccountsItem.getItemTitle(),
+                patchAccountsItem.getItemPrice(),
+                patchAccountsItem.getPlannerId());
+        return accountsItemRepository.save(accountsItem);
+    }
+
+    @Transactional
     public List<AccountsItem> getItem(PrincipalDetails principalDetails){
         //return principalDetails.getUser().getId();
         return accountsItemRepository.findByUserId(principalDetails.getUser().getId());
+    }
+
+    @Transactional
+    public void deleteItem(long id){
+        accountsItemRepository.deleteById(id);
     }
 
     @Transactional

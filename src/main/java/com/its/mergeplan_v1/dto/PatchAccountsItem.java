@@ -14,7 +14,8 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostAccountsItem {
+public class PatchAccountsItem {
+    private long id;
     private long userId;
     private Timestamp createDatetime;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -26,8 +27,9 @@ public class PostAccountsItem {
     private int itemPrice;
     private int plannerId;
 
-    public AccountsItem toEntity(long userId, Timestamp createDatetime, Date itemDatetime, boolean itemKind, int itemFirst, int itemSecond, String itemTitle, int itemPrice, int plannerId){
+    public AccountsItem toEntity(long id, long userId, Timestamp createDatetime, Date itemDatetime, boolean itemKind, int itemFirst, int itemSecond, String itemTitle, int itemPrice, int plannerId){
         return AccountsItem.builder()
+                .id(id)
                 .userId(userId)
                 .createDatetime(createDatetime)
                 .itemDatetime(itemDatetime)
