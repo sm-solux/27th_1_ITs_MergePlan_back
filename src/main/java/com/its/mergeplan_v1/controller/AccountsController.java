@@ -54,14 +54,20 @@ public class AccountsController {
     }
 
     @GetMapping("/auth/accounts/item/{year}/{month}")
-    public List<AccountsItemView> getItem(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month){
+    public List<AccountsItem> getItem(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month){
         PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
         return accountsService.getItem(principalDetails, year, month);
     }
 
-    @GetMapping("/auth/accounts/item/{year}/{month}/{day}")
+    @GetMapping("/auth/accounts/item/calendar/{year}/{month}")
+    public List<AccountsItemView> getItemMonthly(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month){
+        PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
+        return accountsService.getItemCalendar(principalDetails, year, month);
+    }
+
+    @GetMapping("/auth/accounts/item/calendar/{year}/{month}/{day}")
     public List<AccountsItem> getItem(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month, @PathVariable("day") String day){
         PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
-        return accountsService.getItem(principalDetails, year, month, day);
+        return accountsService.getItemCalendar(principalDetails, year, month, day);
     }
 }
