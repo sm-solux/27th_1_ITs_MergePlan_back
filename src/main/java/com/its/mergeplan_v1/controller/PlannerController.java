@@ -2,13 +2,14 @@ package com.its.mergeplan_v1.controller;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
 import com.its.mergeplan_v1.dto.PostPlanner;
+import com.its.mergeplan_v1.dto.PostPlannerList;
 import com.its.mergeplan_v1.entity.Planner;
 import com.its.mergeplan_v1.service.PlannerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,9 +17,29 @@ public class PlannerController {
 
     private final PlannerService plannerService;
 
-    @PostMapping("/auth/planner")
+    @PostMapping("/auth/planner")  // 플랜 생성하기
     public Planner setPlan(Authentication authentication, @RequestBody PostPlanner postPlannerReq){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-        return plannerService.createPlan(principalDetails, postPlannerReq);
+        return plannerService.setPlan(principalDetails.getUser(), postPlannerReq);
     }
+
+    @PatchMapping("/auth/planner/{plan_id}")  // 플래너 일정 수정하기
+    public Planner updatePlan(Authentication authentication, @PathVariable int plan_id, @RequestBody PostPlanner postPlanner){
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        return plannerService.updatePlan(principalDetails.getUser(), postPlanner, plan_id);
+    }
+
+
+    @GetMapping("/auth/planner/{user_id}")  // 플래너 메인 페이지
+    public List<PostPlanner> mainPlannerPage(Authentication authentication, @PathVariable long user_id){
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        return plannerService.mainPlannerPage(principalDetails.getUser(), user_id);
+    }
+
+    @DeleteMapping("/auth/planner/{plan_id}")
+    public void deletePlan(Authentication authentication, @PathVariable int plan_id){
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        plannerService.deletePlan(principalDetails.getUser(), plan_id);
+    }
+
 }
