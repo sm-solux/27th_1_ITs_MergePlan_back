@@ -59,6 +59,24 @@ public class AccountsController {
         return accountsService.getItem(principalDetails, year, month);
     }
 
+    @GetMapping("/auth/accounts/item/income/{year}/{month}")
+    public List<AccountsItem> getItemIncome(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month){
+        PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
+        return accountsService.getItemIncome(principalDetails, year, month);
+    }
+
+    @GetMapping("/auth/accounts/item/expenses/{year}/{month}")
+    public List<AccountsItem> getItemExpenses(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month){
+        PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
+        return accountsService.getItemExpenses(principalDetails, year, month);
+    }
+
+    @GetMapping("/auth/accounts/item/total/{year}/{month}")
+    public Object getItemTotal(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month){
+        PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
+        return accountsService.getItemTotal(principalDetails, year, month);
+    }
+
     @GetMapping("/auth/accounts/item/calendar/{year}/{month}")
     public List<AccountsItemView> getItemMonthly(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month){
         PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
