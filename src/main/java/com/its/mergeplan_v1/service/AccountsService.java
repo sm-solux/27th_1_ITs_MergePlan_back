@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -84,10 +85,19 @@ public class AccountsService {
     }
 
     @Transactional
-    public List<AccountsItem> getItem(PrincipalDetails principalDetails, String year, String month){
-        return accountsItemRepository.findByUserIdWhereMonth(principalDetails.getUser().getId(), year+"-"+month);
+    public List<AccountsItem> getItemIncome(PrincipalDetails principalDetails, String year, String month){
+        return accountsItemRepository.findIncomeByUserIdWhereMonth(principalDetails.getUser().getId(), year+"-"+month);
     }
 
+    @Transactional
+    public List<AccountsItem> getItemExpenses(PrincipalDetails principalDetails, String year, String month){
+        return accountsItemRepository.findExpensesByUserIdWhereMonth(principalDetails.getUser().getId(), year+"-"+month);
+    }
+
+    @Transactional
+    public Object getItemTotal(PrincipalDetails principalDetails, String year, String month){
+        return accountsItemRepository.findTotal(principalDetails.getUser().getId(), year+"-"+month);
+    }
 
     @Transactional
     public List<AccountsItemView> getItemCalendar(PrincipalDetails principalDetails, String year, String month){
