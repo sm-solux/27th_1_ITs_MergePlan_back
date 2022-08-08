@@ -85,6 +85,11 @@ public class AccountsService {
     }
 
     @Transactional
+    public List<AccountsItem> getItem(PrincipalDetails principalDetails, String year, String month){
+        return accountsItemRepository.findByUserIdWhereMonth(principalDetails.getUser().getId(), year+"-"+month);
+    }
+
+    @Transactional
     public List<AccountsItem> getItemIncome(PrincipalDetails principalDetails, String year, String month){
         return accountsItemRepository.findIncomeByUserIdWhereMonth(principalDetails.getUser().getId(), year+"-"+month);
     }

@@ -53,6 +53,12 @@ public class AccountsController {
         return "test!";
     }
 
+    @GetMapping("/auth/accounts/item/{year}/{month}")
+    public List<AccountsItem> getItem(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month){
+        PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
+        return accountsService.getItem(principalDetails, year, month);
+    }
+
     @GetMapping("/auth/accounts/item/income/{year}/{month}")
     public List<AccountsItem> getItemIncome(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month){
         PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
