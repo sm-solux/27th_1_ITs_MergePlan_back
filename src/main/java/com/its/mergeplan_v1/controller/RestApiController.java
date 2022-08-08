@@ -8,10 +8,7 @@ import com.its.mergeplan_v1.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,6 +30,13 @@ public class RestApiController {
         //userRepository.save(user);
         return userService.PostUser(postUser);
         //return "회원가입 완료";
+    }
+
+    @PatchMapping("/auth/user/delete/{user_id}")
+    public User delete(@PathVariable Long user_id, Authentication authentication){
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        return userService.deleteUser(user_id, principalDetails.getUser());
+
     }
 
     // user권한만 접근가능
