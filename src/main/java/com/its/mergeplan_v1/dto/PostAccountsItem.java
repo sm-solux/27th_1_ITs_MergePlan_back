@@ -17,7 +17,7 @@ import java.util.Date;
 public class PostAccountsItem {
     private long userId;
     private Timestamp createDatetime;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date itemDatetime;
     private boolean itemKind;
     private int itemFirst;
