@@ -29,7 +29,7 @@ public class AccountsItem {
     @Column(name = "create_datetime")
     private Timestamp createDatetime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "item_datetime")
     private Date itemDatetime;
 
