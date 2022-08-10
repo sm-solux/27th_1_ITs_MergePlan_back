@@ -50,4 +50,7 @@ public class AccountsItem {
 
     @Column(name = "planner_id")
     private int plannerId;
+
+    @Transient
+    private String itemFirstWord;
 }
