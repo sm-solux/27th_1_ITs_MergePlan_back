@@ -39,7 +39,12 @@ public class AccountsController {
     @GetMapping("/auth/accounts/item")
     public List<AccountsItem> getItem(Authentication auth){
         PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
-        return accountsService.getItem(principalDetails);
+        List<AccountsItem> items =  accountsService.getItem(principalDetails);
+        String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
+        for(AccountsItem item : items){
+            item.setItemFirstWord(str[item.getItemFirst() - 1]);
+        }
+        return items;
     }
 
     @PatchMapping("/auth/accounts/item")
