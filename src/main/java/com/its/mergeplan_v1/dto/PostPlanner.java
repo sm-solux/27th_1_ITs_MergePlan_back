@@ -15,19 +15,19 @@ import java.sql.Timestamp;
 public class PostPlanner {
     private Long userId;
     private boolean allDay;
-    private Timestamp startTime;
-    private Timestamp endTime;
+    private Timestamp start;
+    private Timestamp end;
     private String title;
     private int category;
     private String description;
 
-    public Planner toEntity(Long userId, boolean allDay, Timestamp startDatetime, Timestamp endDatetime, String title, int category, String description){
+    public Planner toEntity(Long userId, boolean allDay, Timestamp start, Timestamp end, String title, int category, String description){
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
         return Planner.builder()
                 .userId(userId)
-                .allDay(allDay)
-                .startDatetime(startDatetime)
-                .endDatetime(endDatetime)
+                .allday(allDay)
+                .startDatetime(start)
+                .endDatetime(end)
                 .title(title)
                 .itemFirstWord(str[getCategory()-1])
                 .description(description).build();
