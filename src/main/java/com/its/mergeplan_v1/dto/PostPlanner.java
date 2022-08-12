@@ -14,18 +14,18 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class PostPlanner {
     private Long userId;
-    private boolean allday;
+    private boolean allDay;
     private Timestamp startTime;
     private Timestamp endTime;
     private String title;
     private int category;
     private String description;
 
-    public Planner toEntity(Long userId, boolean allday, Timestamp startDatetime, Timestamp endDatetime, String title, int category, String description){
+    public Planner toEntity(Long userId, boolean allDay, Timestamp startDatetime, Timestamp endDatetime, String title, int category, String description){
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
         return Planner.builder()
                 .userId(userId)
-                .allday(allday)
+                .allDay(allDay)
                 .startDatetime(startDatetime)
                 .endDatetime(endDatetime)
                 .title(title)

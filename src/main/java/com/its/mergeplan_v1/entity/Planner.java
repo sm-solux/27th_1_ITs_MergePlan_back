@@ -24,14 +24,14 @@ public class Planner {
     @JoinColumn(name = "user_id")
     private Long userId;
 
-    private boolean allday;  // 하루종일 하는 일정인지
+    private boolean allDay;  // 하루종일 하는 일정인지
 
     @CreationTimestamp
-    @Column(name = "start_datetime")
+    @Column(name = "start")
     private Timestamp startDatetime;
 
     @CreationTimestamp
-    @Column(name = "end_datetime")
+    @Column(name = "end")
     private Timestamp endDatetime;
 
     private String title;

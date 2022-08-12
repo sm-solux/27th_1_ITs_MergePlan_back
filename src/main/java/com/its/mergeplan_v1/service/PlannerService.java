@@ -23,7 +23,7 @@ public class PlannerService {
     @Transactional
     public Planner setPlan(User loginUser, PostPlanner postPlannerReq){
         User user = userRepository.findById(loginUser.getId());
-        Planner planner = postPlannerReq.toEntity(loginUser.getId(), postPlannerReq.isAllday(), postPlannerReq.getStartTime(), postPlannerReq.getEndTime(), postPlannerReq.getTitle(), postPlannerReq.getCategory(), postPlannerReq.getDescription());
+        Planner planner = postPlannerReq.toEntity(loginUser.getId(), postPlannerReq.isAllDay(), postPlannerReq.getStartTime(), postPlannerReq.getEndTime(), postPlannerReq.getTitle(), postPlannerReq.getCategory(), postPlannerReq.getDescription());
         return plannerRepository.save(planner);
     }
 
@@ -37,7 +37,7 @@ public class PlannerService {
         for (Planner pn: plannerList){
             PostPlanner postPlanner = new PostPlanner();
             postPlanner.setTitle(pn.getTitle());
-            postPlanner.setAllday(pn.isAllday());
+            postPlanner.setAllDay(pn.isAllDay());
             postPlanner.setCategory(pn.getItemFirst());
             postPlanner.setStartTime(pn.getStartDatetime());
             postPlanner.setEndTime(pn.getEndDatetime());
@@ -59,7 +59,7 @@ public class PlannerService {
             origin_planner.setItemFirstWord(str[postPlanner.getCategory()-1]);
             origin_planner.setStartDatetime(postPlanner.getStartTime());
             origin_planner.setEndDatetime(postPlanner.getEndTime());
-            origin_planner.setAllday(postPlanner.isAllday());
+            origin_planner.setAllDay(postPlanner.isAllDay());
 
             return origin_planner;
         } else{
