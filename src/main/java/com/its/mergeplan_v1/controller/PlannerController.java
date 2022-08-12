@@ -1,6 +1,7 @@
 package com.its.mergeplan_v1.controller;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
+import com.its.mergeplan_v1.dto.GetPlanner;
 import com.its.mergeplan_v1.dto.PostPlanner;
 import com.its.mergeplan_v1.dto.PostPlannerList;
 import com.its.mergeplan_v1.entity.Planner;
@@ -31,7 +32,7 @@ public class PlannerController {
 
 
     @GetMapping("/auth/planner/item")  // 플래너 메인 페이지
-    public List<PostPlanner> mainPlannerPage(Authentication authentication){
+    public List<GetPlanner> mainPlannerPage(Authentication authentication){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
         return plannerService.mainPlannerPage(principalDetails.getUser());
     }

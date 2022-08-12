@@ -1,6 +1,7 @@
 package com.its.mergeplan_v1.service;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
+import com.its.mergeplan_v1.dto.GetPlanner;
 import com.its.mergeplan_v1.dto.PostPlanner;
 import com.its.mergeplan_v1.entity.Planner;
 import com.its.mergeplan_v1.entity.User;
@@ -28,27 +29,27 @@ public class PlannerService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostPlanner> mainPlannerPage(User loginUser){
+    public List<GetPlanner> mainPlannerPage(User loginUser){
         User user = userRepository.findById(loginUser.getId());
         List<Planner> plannerList = plannerRepository.findByUserId(user.getId());
-        List<PostPlanner> postPlannerLists = new ArrayList<>();
+        List<GetPlanner> getPlannerLists = new ArrayList<>();
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
 
         for (Planner pn: plannerList){
-            PostPlanner postPlanner = new PostPlanner();
-            postPlanner.setTitle(pn.getTitle());
-            postPlanner.setAllDay(pn.isAllday());
-            postPlanner.setCategory(pn.getItemFirst());
-            postPlanner.setStart(pn.getStartDatetime());
-            postPlanner.setEnd(pn.getEndDatetime());
-            postPlanner.setDescription(pn.getDescription());
-            postPlanner.setUserId(user.getId());
-            postPlanner.setItemFirstWord(str[pn.getItemFirst()-1]);
+            GetPlanner getPlanner = new GetPlanner();
+            getPlanner.setTitle(pn.getTitle());
+            getPlanner.setAllDay(pn.isAllday());
+            getPlanner.setCategory(pn.getItemFirst());
+            getPlanner.setStart(pn.getStartDatetime());
+            getPlanner.setEnd(pn.getEndDatetime());
+            getPlanner.setDescription(pn.getDescription());
+            getPlanner.setUserId(user.getId());
+            getPlanner.setItemFirstWord(str[pn.getItemFirst()-1]);
 
-            postPlannerLists.add(postPlanner);
+            getPlannerLists.add(getPlanner);
         }
 
-        return postPlannerLists;
+        return getPlannerLists;
     }
 
     @Transactional
