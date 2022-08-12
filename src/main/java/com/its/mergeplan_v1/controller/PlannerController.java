@@ -36,7 +36,7 @@ public class PlannerController {
         return plannerService.mainPlannerPage(principalDetails.getUser());
     }
 
-    @DeleteMapping("/auth/planner/{plan_id}")
+    @DeleteMapping("/auth/planner/{plan_id}")  // 플랜 삭제하기
     public void deletePlan(Authentication authentication, @PathVariable int plan_id){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
         plannerService.deletePlan(principalDetails.getUser(), plan_id);
