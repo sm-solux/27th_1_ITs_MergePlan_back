@@ -35,6 +35,7 @@ public class PostPlanner {
                 .endDatetime(end)
                 .title(title)
                 .itemFirst(category)
+                .itemFirstWord(str[category - 1])
                 .description(description).build();
     }
 
