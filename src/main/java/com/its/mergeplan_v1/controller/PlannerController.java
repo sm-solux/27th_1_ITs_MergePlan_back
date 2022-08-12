@@ -23,7 +23,7 @@ public class PlannerController {
         return plannerService.setPlan(principalDetails.getUser(), postPlannerReq);
     }
 
-    @PatchMapping("/auth/planner/{plan_id}")  // 플래너 일정 수정하기
+    @PatchMapping("/auth/planner/item/{plan_id}")  // 플래너 일정 수정하기
     public Planner updatePlan(Authentication authentication, @PathVariable int plan_id, @RequestBody PostPlanner postPlanner){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
         return plannerService.updatePlan(principalDetails.getUser(), postPlanner, plan_id);
@@ -36,7 +36,7 @@ public class PlannerController {
         return plannerService.mainPlannerPage(principalDetails.getUser());
     }
 
-    @DeleteMapping("/auth/planner/{plan_id}")  // 플랜 삭제하기
+    @DeleteMapping("/auth/planner/item/{plan_id}")  // 플랜 삭제하기
     public void deletePlan(Authentication authentication, @PathVariable int plan_id){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
         plannerService.deletePlan(principalDetails.getUser(), plan_id);

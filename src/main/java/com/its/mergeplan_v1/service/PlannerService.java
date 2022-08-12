@@ -58,6 +58,8 @@ public class PlannerService {
         if (origin_planner.getUserId() == user.getId()){
             origin_planner.setDescription(postPlanner.getDescription());
             origin_planner.setItemFirstWord(str[postPlanner.getCategory()-1]);
+            origin_planner.setTitle(postPlanner.getTitle());
+            origin_planner.setItemFirstWord(postPlanner.getItemFirstWord());
             origin_planner.setStartDatetime(postPlanner.getStart());
             origin_planner.setEndDatetime(postPlanner.getEnd());
             origin_planner.setAllday(postPlanner.isAllDay());
