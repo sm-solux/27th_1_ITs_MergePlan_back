@@ -23,25 +23,26 @@ public class PlannerService {
     @Transactional
     public Planner setPlan(User loginUser, PostPlanner postPlannerReq){
         User user = userRepository.findById(loginUser.getId());
-        Planner planner = postPlannerReq.toEntity(postPlannerReq.isAllday(), postPlannerReq.getStartTime(), postPlannerReq.getEndTime(), postPlannerReq.getTitle(), postPlannerReq.getCategory(), postPlannerReq.getDescription());
+        Planner planner = postPlannerReq.toEntity(loginUser.getId(), postPlannerReq.isAllday(), postPlannerReq.getStartTime(), postPlannerReq.getEndTime(), postPlannerReq.getTitle(), postPlannerReq.getCategory(), postPlannerReq.getDescription());
         return plannerRepository.save(planner);
     }
 
     @Transactional(readOnly = true)
-    public List<PostPlanner> mainPlannerPage(User loginUser, Long user_id){
+    public List<PostPlanner> mainPlannerPage(User loginUser){
         User user = userRepository.findById(loginUser.getId());
-        List<Planner> plannerList = plannerRepository.findByUserId(user_id);
+        List<Planner> plannerList = plannerRepository.findByUserId(user.getId());
         List<PostPlanner> postPlannerLists = new ArrayList<>();
+        String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
 
         for (Planner pn: plannerList){
             PostPlanner postPlanner = new PostPlanner();
             postPlanner.setTitle(pn.getTitle());
             postPlanner.setAllday(pn.isAllday());
-            postPlanner.setCategory(pn.getCategory());
+            postPlanner.setCategory(pn.getItemFirst());
             postPlanner.setStartTime(pn.getStartDatetime());
             postPlanner.setEndTime(pn.getEndDatetime());
             postPlanner.setDescription(pn.getDescription());
-            postPlanner.setUser(pn.getUser());
+            postPlanner.setUserId(user.getId());
 
             postPlannerLists.add(postPlanner);
         }
@@ -52,9 +53,10 @@ public class PlannerService {
     @Transactional
     public Planner updatePlan(User user, PostPlanner postPlanner, int plan_id){
         Planner origin_planner = plannerRepository.findById(plan_id);
-        if (origin_planner.getUser().getId() == user.getId()){
+        String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
+        if (origin_planner.getUserId() == user.getId()){
             origin_planner.setDescription(postPlanner.getDescription());
-            origin_planner.setCategory(postPlanner.getCategory());
+            origin_planner.setItemFirstWord(str[postPlanner.getCategory()-1]);
             origin_planner.setStartDatetime(postPlanner.getStartTime());
             origin_planner.setEndDatetime(postPlanner.getEndTime());
             origin_planner.setAllday(postPlanner.isAllday());

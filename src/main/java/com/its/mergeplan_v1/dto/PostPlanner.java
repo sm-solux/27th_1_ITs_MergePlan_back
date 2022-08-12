@@ -1,8 +1,6 @@
 package com.its.mergeplan_v1.dto;
 
-import com.its.mergeplan_v1.entity.Category;
 import com.its.mergeplan_v1.entity.Planner;
-import com.its.mergeplan_v1.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,21 +13,23 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostPlanner {
-    private User user;
+    private Long userId;
     private boolean allday;
     private Timestamp startTime;
     private Timestamp endTime;
     private String title;
-    private Category category;
+    private int category;
     private String description;
 
-    public Planner toEntity(boolean allday, Timestamp startDatetime, Timestamp endDatetime, String title, Category category, String description){
+    public Planner toEntity(Long userId, boolean allday, Timestamp startDatetime, Timestamp endDatetime, String title, int category, String description){
+        String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
         return Planner.builder()
+                .userId(userId)
                 .allday(allday)
                 .startDatetime(startDatetime)
                 .endDatetime(endDatetime)
                 .title(title)
-                .category(category)
+                .itemFirstWord(str[getCategory()-1])
                 .description(description).build();
     }
 
