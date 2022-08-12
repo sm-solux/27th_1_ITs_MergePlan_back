@@ -21,9 +21,8 @@ public class Planner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Long userId;
 
     private boolean allday;  // 하루종일 하는 일정인지
 
@@ -37,13 +36,16 @@ public class Planner {
 
     private String title;
 
-    private Category category;
-
     private String description;
 
     @CreationTimestamp
     @Column(name = "create_date")
     private Timestamp createDate;
 
+    @Column(name = "item_first")
+    private int itemFirst;
+
+    @Transient
+    private String itemFirstWord;
 
 }

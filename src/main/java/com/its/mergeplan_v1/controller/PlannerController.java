@@ -17,7 +17,7 @@ public class PlannerController {
 
     private final PlannerService plannerService;
 
-    @PostMapping("/auth/planner")  // 플랜 생성하기
+    @PostMapping("/auth/planner/item")  // 플랜 생성하기
     public Planner setPlan(Authentication authentication, @RequestBody PostPlanner postPlannerReq){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
         return plannerService.setPlan(principalDetails.getUser(), postPlannerReq);
@@ -30,10 +30,10 @@ public class PlannerController {
     }
 
 
-    @GetMapping("/auth/planner/{user_id}")  // 플래너 메인 페이지
-    public List<PostPlanner> mainPlannerPage(Authentication authentication, @PathVariable long user_id){
+    @GetMapping("/auth/planner/item")  // 플래너 메인 페이지
+    public List<PostPlanner> mainPlannerPage(Authentication authentication){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-        return plannerService.mainPlannerPage(principalDetails.getUser(), user_id);
+        return plannerService.mainPlannerPage(principalDetails.getUser());
     }
 
     @DeleteMapping("/auth/planner/{plan_id}")
