@@ -1,11 +1,13 @@
 package com.its.mergeplan_v1.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.its.mergeplan_v1.entity.Planner;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Data
@@ -15,14 +17,16 @@ import java.sql.Timestamp;
 public class PostPlanner {
     private Long userId;
     private boolean allDay;
-    private Timestamp start;
-    private Timestamp end;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date start;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date end;
     private String title;
     private int category;
     private String description;
     private String itemFirstWord;
 
-    public Planner toEntity(Long userId, boolean allDay, Timestamp start, Timestamp end, String title, int category, String description){
+    public Planner toEntity(Long userId, boolean allDay, Date start, Date end, String title, int category, String description){
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
         return Planner.builder()
                 .userId(userId)

@@ -1,11 +1,13 @@
 package com.its.mergeplan_v1.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -26,13 +28,13 @@ public class Planner {
 
     private boolean allday;  // 하루종일 하는 일정인지
 
-    @CreationTimestamp
     @Column(name = "start_datetime")
-    private Timestamp startDatetime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date startDatetime;
 
-    @CreationTimestamp
     @Column(name = "end_datetime")
-    private Timestamp endDatetime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date endDatetime;
 
     private String title;
 
