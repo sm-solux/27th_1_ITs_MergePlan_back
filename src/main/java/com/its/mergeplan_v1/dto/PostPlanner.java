@@ -20,6 +20,7 @@ public class PostPlanner {
     private String title;
     private int category;
     private String description;
+    private String itemFirstWord;
 
     public Planner toEntity(Long userId, boolean allDay, Timestamp start, Timestamp end, String title, int category, String description){
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
