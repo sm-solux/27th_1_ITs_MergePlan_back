@@ -43,7 +43,7 @@ public class PlannerService {
             postPlanner.setEnd(pn.getEndDatetime());
             postPlanner.setDescription(pn.getDescription());
             postPlanner.setUserId(user.getId());
-            postPlanner.setItemFirstWord(str[pn.getItemFirst()-1]);
+            postPlanner.setItemFirstWord(str[pn.getItemFirst()+1]);
 
             postPlannerLists.add(postPlanner);
         }
