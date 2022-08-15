@@ -45,6 +45,7 @@ public class PlannerService {
             getPlanner.setStart(pn.getStartDatetime());
             getPlanner.setEnd(pn.getEndDatetime());
             getPlanner.setDescription(pn.getDescription());
+            getPlanner.setCreateDate(pn.getCreateDate());
             getPlanner.setUserId(user.getId());
             getPlanner.setItemFirstWord(str[pn.getItemFirst()-1]);
 
