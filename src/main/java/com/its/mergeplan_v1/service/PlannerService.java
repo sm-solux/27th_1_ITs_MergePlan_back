@@ -79,4 +79,24 @@ public class PlannerService {
         Optional<Planner> planner = plannerRepository.findById(plan_id);
         plannerRepository.delete(planner.get());
     }
+
+    @Transactional
+    public GetPlanner onePlan(User user, Long plan_id){
+        Optional<Planner> planner = plannerRepository.findById(plan_id);
+        String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
+
+        GetPlanner getPlanner = new GetPlanner();
+        getPlanner.setPlannerId(planner.get().getId());
+        getPlanner.setUserId(planner.get().getUserId());
+        getPlanner.setAllDay(planner.get().isAllday());
+        getPlanner.setDescription(planner.get().getDescription());
+        getPlanner.setTitle(planner.get().getTitle());
+        getPlanner.setCategory(planner.get().getItemFirst());
+        getPlanner.setStart(planner.get().getStartDatetime());
+        getPlanner.setEnd(planner.get().getEndDatetime());
+        getPlanner.setCreateDate(planner.get().getCreateDate());
+        getPlanner.setItemFirstWord(str[planner.get().getItemFirst()-1]);
+
+        return getPlanner;
+    }
 }
