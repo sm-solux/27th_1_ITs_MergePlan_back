@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -37,6 +38,7 @@ public class PlannerService {
 
         for (Planner pn: plannerList){
             GetPlanner getPlanner = new GetPlanner();
+            getPlanner.setPlannerId(pn.getId());
             getPlanner.setTitle(pn.getTitle());
             getPlanner.setAllDay(pn.isAllday());
             getPlanner.setCategory(pn.getItemFirst());
@@ -53,27 +55,27 @@ public class PlannerService {
     }
 
     @Transactional
-    public Planner updatePlan(User user, PostPlanner postPlanner, int plan_id){
-        Planner origin_planner = plannerRepository.findById(plan_id);
+    public Planner updatePlan(User user, PostPlanner postPlanner, Long plan_id){
+        Optional<Planner> origin_planner = plannerRepository.findById(plan_id);
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
-        if (origin_planner.getUserId() == user.getId()){
-            origin_planner.setDescription(postPlanner.getDescription());
-            origin_planner.setItemFirstWord(str[postPlanner.getCategory()-1]);
-            origin_planner.setTitle(postPlanner.getTitle());
-            origin_planner.setItemFirstWord(postPlanner.getItemFirstWord());
-            origin_planner.setStartDatetime(postPlanner.getStart());
-            origin_planner.setEndDatetime(postPlanner.getEnd());
-            origin_planner.setAllday(postPlanner.isAllDay());
+        if (origin_planner.get().getUserId() == user.getId()){
+            origin_planner.get().setDescription(postPlanner.getDescription());
+            origin_planner.get().setItemFirstWord(str[postPlanner.getCategory()+1]);
+            origin_planner.get().setTitle(postPlanner.getTitle());
+            origin_planner.get().setItemFirst(postPlanner.getItemFirst());
+            origin_planner.get().setStartDatetime(postPlanner.getStart());
+            origin_planner.get().setEndDatetime(postPlanner.getEnd());
+            origin_planner.get().setAllday(postPlanner.isAllDay());
 
-            return origin_planner;
+            return origin_planner.get();
         } else{
             return null;
         }
     }
 
     @Transactional
-    public void deletePlan(User loginUser, int plan_id){
-        Planner planner = plannerRepository.findById(plan_id);
-        plannerRepository.delete(planner);
+    public void deletePlan(User loginUser, Long plan_id){
+        Optional<Planner> planner = plannerRepository.findById(plan_id);
+        plannerRepository.delete(planner.get());
     }
 }

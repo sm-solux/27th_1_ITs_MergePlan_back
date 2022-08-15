@@ -21,7 +21,7 @@ public class Planner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @JoinColumn(name = "user_id")
     private Long userId;

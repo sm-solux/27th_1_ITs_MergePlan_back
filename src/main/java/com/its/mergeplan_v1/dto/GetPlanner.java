@@ -16,6 +16,7 @@ import java.sql.Date;
 @NoArgsConstructor
 public class GetPlanner {
     private Long userId;
+    private Long plannerId;
     private boolean allDay;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date start;

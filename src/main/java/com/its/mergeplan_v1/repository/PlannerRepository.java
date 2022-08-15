@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PlannerRepository extends JpaRepository<Planner, Long> {
     List<Planner> findByUserId(Long userId);
-    Planner findById(int planId);
+    Planner findById(long planId);
 }
