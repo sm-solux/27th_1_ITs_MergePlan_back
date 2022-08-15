@@ -43,4 +43,10 @@ public class PlannerController {
         plannerService.deletePlan(principalDetails.getUser(), plan_id);
     }
 
+    @GetMapping("/auth/planner/item/{plan_id}")  // 플랜 하나 조회하기
+    public GetPlanner onePlan(Authentication authentication, @PathVariable Long plan_id){
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        return plannerService.onePlan(principalDetails.getUser(), plan_id);
+    }
+
 }

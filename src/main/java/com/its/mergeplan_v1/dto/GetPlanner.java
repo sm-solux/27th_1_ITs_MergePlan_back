@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @Builder
@@ -26,9 +27,10 @@ public class GetPlanner {
     private int category;
     private String description;
     private String itemFirstWord;
+    private Timestamp createDate;
 
 
-    public Planner toEntity(Long userId, boolean allDay, Date start, Date end, String title, int category, String description){
+    public Planner toEntity(Long userId, boolean allDay, Date start, Date end, String title, int category, String description, Timestamp createDate){
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
         return Planner.builder()
                 .userId(userId)
@@ -36,6 +38,7 @@ public class GetPlanner {
                 .startDatetime(start)
                 .endDatetime(end)
                 .title(title)
+                .createDate(createDate)
                 .itemFirst(category)
                 .itemFirstWord(str[category - 1])
                 .description(description).build();
