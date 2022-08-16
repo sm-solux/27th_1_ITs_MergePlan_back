@@ -20,10 +20,10 @@ import java.util.Date;
 public class AccountsItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false, name = "user_id")
-    private long userId;
+    private Long userId;
 
     @CreationTimestamp
     @Column(name = "create_datetime")
@@ -49,12 +49,12 @@ public class AccountsItem {
     private int itemPrice;
 
     @Column(name = "planner_id")
-    private long plannerId;
+    private Long plannerId;
 
     @Transient
     private String itemFirstWord;
 
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn
-//    private Planner planner;
+    @OneToOne
+    @JoinColumn(name="planner_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Planner planner;
 }

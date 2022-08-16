@@ -21,10 +21,10 @@ public class Planner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false, name = "user_id")
-    private long userId;
+    private Long userId;
 
     private boolean allday;  // 하루종일 하는 일정인지
 
