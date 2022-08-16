@@ -6,8 +6,10 @@ import com.its.mergeplan_v1.dto.PostAccountsCategory;
 import com.its.mergeplan_v1.dto.PostAccountsItem;
 import com.its.mergeplan_v1.entity.AccountsCategory;
 import com.its.mergeplan_v1.entity.AccountsItem;
+import com.its.mergeplan_v1.entity.AccountsItemP;
 import com.its.mergeplan_v1.entity.AccountsItemView;
 import com.its.mergeplan_v1.repository.AccountsCategoryRepository;
+import com.its.mergeplan_v1.repository.AccountsItemPRepository;
 import com.its.mergeplan_v1.repository.AccountsItemRepository;
 import com.its.mergeplan_v1.repository.AccountsItemViewRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class AccountsService {
     private final AccountsCategoryRepository accountsCategoryRepository;
     private final AccountsItemRepository accountsItemRepository;
     private final AccountsItemViewRepository accountsItemViewRepository;
+    private final AccountsItemPRepository accountsItemPRepository;
 
     @Transactional
     public AccountsCategory saveCategory(PrincipalDetails principalDetails, PostAccountsCategory postAccountsCategory){
@@ -112,5 +115,10 @@ public class AccountsService {
     @Transactional
     public List<AccountsItem> getItemCalendar(PrincipalDetails principalDetails, String year, String month, String day){
         return accountsItemRepository.findByUserIdWhereDate(principalDetails.getUser().getId(), year+"-"+month+"-"+day);
+    }
+
+    @Transactional
+    public List<AccountsItemP> getItemByPlannerId(Long plannerId){
+        return accountsItemPRepository.findByPlannerId(plannerId);
     }
 }

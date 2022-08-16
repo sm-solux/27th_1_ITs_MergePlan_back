@@ -51,13 +51,4 @@ public class Planner {
 
     @Transient
     private String itemFirstWord;
-
-//    @OneToMany(mappedBy = "plannerId", cascade = CascadeType.ALL)
-////    @OneToMany
-////    @JoinColumn(referencedColumnName = "planner_id")
-//    private List<AccountsItem> accountsItems = new ArrayList<>();
-
-//    @OneToOne
-//    @JoinColumn(name="id", referencedColumnName = "planner_id", insertable = false, updatable = false)
-//    private AccountsItem accountsItem;
 }
