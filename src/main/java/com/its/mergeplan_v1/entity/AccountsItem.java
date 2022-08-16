@@ -49,8 +49,12 @@ public class AccountsItem {
     private int itemPrice;
 
     @Column(name = "planner_id")
-    private int plannerId;
+    private long plannerId;
 
     @Transient
     private String itemFirstWord;
+
+//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn
+//    private Planner planner;
 }

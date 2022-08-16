@@ -23,8 +23,8 @@ public class Planner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JoinColumn(name = "user_id")
-    private Long userId;
+    @Column(nullable = false, name = "user_id")
+    private long userId;
 
     private boolean allday;  // 하루종일 하는 일정인지
 
