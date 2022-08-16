@@ -9,7 +9,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Data
@@ -50,4 +52,12 @@ public class Planner {
     @Transient
     private String itemFirstWord;
 
+//    @OneToMany(mappedBy = "plannerId", cascade = CascadeType.ALL)
+////    @OneToMany
+////    @JoinColumn(referencedColumnName = "planner_id")
+//    private List<AccountsItem> accountsItems = new ArrayList<>();
+
+//    @OneToOne
+//    @JoinColumn(name="id", referencedColumnName = "planner_id", insertable = false, updatable = false)
+//    private AccountsItem accountsItem;
 }
