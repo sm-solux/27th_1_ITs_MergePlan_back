@@ -57,4 +57,8 @@ public class AccountsItem {
     @OneToOne
     @JoinColumn(name="planner_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Planner planner;
+
+//    @ManyToOne
+//    @JoinColumn(name = "planner", insertable = false, updatable = false)
+//    private Planner planner;
 }
