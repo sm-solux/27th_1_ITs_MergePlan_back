@@ -5,6 +5,7 @@ import com.its.mergeplan_v1.dto.GetPlanner;
 import com.its.mergeplan_v1.dto.PostPlanner;
 import com.its.mergeplan_v1.dto.PostPlannerList;
 import com.its.mergeplan_v1.entity.Planner;
+import com.its.mergeplan_v1.service.AccountsService;
 import com.its.mergeplan_v1.service.PlannerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import java.util.List;
 public class PlannerController {
 
     private final PlannerService plannerService;
+    private final AccountsService accountsService;
 
     @PostMapping("/auth/planner/item")  // 플랜 생성하기
     public Planner setPlan(Authentication authentication, @RequestBody PostPlanner postPlannerReq){
@@ -34,7 +36,11 @@ public class PlannerController {
     @GetMapping("/auth/planner/item")  // 플래너 메인 페이지
     public List<GetPlanner> mainPlannerPage(Authentication authentication){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-        return plannerService.mainPlannerPage(principalDetails.getUser());
+        List<GetPlanner> getPlanners = plannerService.mainPlannerPage(principalDetails.getUser());
+        for(GetPlanner getPlanner : getPlanners){
+            getPlanner.setAccountsItemPs(accountsService.getItemByPlannerId(getPlanner.getId()));
+        }
+        return getPlanners;
     }
 
     @DeleteMapping("/auth/planner/item/{plan_id}")  // 플랜 삭제하기

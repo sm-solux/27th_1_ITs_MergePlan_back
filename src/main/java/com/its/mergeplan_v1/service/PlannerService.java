@@ -38,7 +38,7 @@ public class PlannerService {
 
         for (Planner pn: plannerList){
             GetPlanner getPlanner = new GetPlanner();
-            getPlanner.setPlannerId(pn.getId());
+            getPlanner.setId(pn.getId());
             getPlanner.setTitle(pn.getTitle());
             getPlanner.setAllDay(pn.isAllday());
             getPlanner.setCategory(pn.getItemFirst());
@@ -86,7 +86,7 @@ public class PlannerService {
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
 
         GetPlanner getPlanner = new GetPlanner();
-        getPlanner.setPlannerId(planner.get().getId());
+        getPlanner.setId(planner.get().getId());
         getPlanner.setUserId(planner.get().getUserId());
         getPlanner.setAllDay(planner.get().isAllday());
         getPlanner.setDescription(planner.get().getDescription());
