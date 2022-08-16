@@ -43,10 +43,10 @@ public class PlannerService {
             getPlanner.setAllDay(pn.isAllday());
             getPlanner.setCategory(pn.getItemFirst());
             getPlanner.setStart(pn.getStartDatetime());
-            System.out.println("==================");
+//            System.out.println("==================");
             System.out.println(pn.getStartDatetime());
-            System.out.println(pn);
-            System.out.println("====================");
+//            System.out.println(pn);
+//            System.out.println("====================");
             getPlanner.setEnd(pn.getEndDatetime());
             getPlanner.setDescription(pn.getDescription());
             getPlanner.setCreateDate(pn.getCreateDate());
