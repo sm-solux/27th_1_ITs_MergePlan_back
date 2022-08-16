@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostPlanner {
-    private Long userId;
+    private long userId;
     private boolean allDay;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp start;
