@@ -19,10 +19,10 @@ public class GetPlanner {
     private Long userId;
     private Long plannerId;
     private boolean allDay;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date start;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date end;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private Timestamp start;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private Timestamp end;
     private String title;
     private int category;
     private String description;
@@ -30,7 +30,7 @@ public class GetPlanner {
     private Timestamp createDate;
 
 
-    public Planner toEntity(Long userId, boolean allDay, Date start, Date end, String title, int category, String description, Timestamp createDate){
+    public Planner toEntity(Long userId, boolean allDay, Timestamp start, Timestamp end, String title, int category, String description, Timestamp createDate){
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
         return Planner.builder()
                 .userId(userId)

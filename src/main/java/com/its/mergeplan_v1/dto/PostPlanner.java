@@ -18,16 +18,16 @@ public class PostPlanner {
     private Long userId;
     private boolean allDay;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date start;
+    private Timestamp start;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date end;
+    private Timestamp end;
     private String title;
     private int category;
     private String description;
     private String itemFirstWord;
     private int itemFirst;
 
-    public Planner toEntity(Long userId, boolean allDay, Date start, Date end, String title, int category, String description){
+    public Planner toEntity(Long userId, boolean allDay, Timestamp start, Timestamp end, String title, int category, String description){
         String[] str = {"Work", "Party", "Shopping", "Dining", "Trip"};
         return Planner.builder()
                 .userId(userId)
