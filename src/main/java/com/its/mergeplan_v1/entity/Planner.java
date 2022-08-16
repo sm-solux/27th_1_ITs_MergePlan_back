@@ -30,11 +30,11 @@ public class Planner {
 
     @Column(name = "start_datetime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date startDatetime;
+    private Timestamp startDatetime;
 
     @Column(name = "end_datetime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date endDatetime;
+    private Timestamp endDatetime;
 
     private String title;
 
