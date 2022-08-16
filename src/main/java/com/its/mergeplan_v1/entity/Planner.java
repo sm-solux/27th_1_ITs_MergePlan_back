@@ -7,9 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Builder
 @Data
@@ -30,11 +30,11 @@ public class Planner {
 
     @Column(name = "start_datetime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp startDatetime;
+    private Date startDatetime;
 
     @Column(name = "end_datetime")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Timestamp endDatetime;
+    private Date endDatetime;
 
     private String title;
 
