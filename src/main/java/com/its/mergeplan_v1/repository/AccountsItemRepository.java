@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Optional;
 
 @Repository
 public interface AccountsItemRepository extends JpaRepository<AccountsItem, Long> {
     List<AccountsItem> findByUserId(long userId);
+    Optional<AccountsItem> findById(Long accountId);
 
     @Query(value = "select * from accounts_item "
             + "where user_id = ?1 "

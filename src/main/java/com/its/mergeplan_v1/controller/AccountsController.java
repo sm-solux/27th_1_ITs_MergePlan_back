@@ -1,6 +1,7 @@
 package com.its.mergeplan_v1.controller;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
+import com.its.mergeplan_v1.dto.GetAccountsItem;
 import com.its.mergeplan_v1.dto.PatchAccountsItem;
 import com.its.mergeplan_v1.dto.PostAccountsCategory;
 import com.its.mergeplan_v1.dto.PostAccountsItem;
@@ -92,5 +93,11 @@ public class AccountsController {
     public List<AccountsItem> getItem(Authentication auth, @PathVariable("year") String year, @PathVariable("month") String month, @PathVariable("day") String day){
         PrincipalDetails principalDetails = (PrincipalDetails) auth.getPrincipal();
         return accountsService.getItemCalendar(principalDetails, year, month, day);
+    }
+
+    @GetMapping("/auth/account/item/{account_id}")
+    public GetAccountsItem oneItem(Authentication authentication, @PathVariable("account_id") Long account_id){
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        return accountsService.oneItem(principalDetails.getUser(), account_id);
     }
 }
