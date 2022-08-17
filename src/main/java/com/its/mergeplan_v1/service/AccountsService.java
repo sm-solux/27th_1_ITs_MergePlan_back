@@ -1,24 +1,24 @@
 package com.its.mergeplan_v1.service;
 
 import com.its.mergeplan_v1.config.auth.PrincipalDetails;
+import com.its.mergeplan_v1.dto.GetAccountsItem;
 import com.its.mergeplan_v1.dto.PatchAccountsItem;
 import com.its.mergeplan_v1.dto.PostAccountsCategory;
 import com.its.mergeplan_v1.dto.PostAccountsItem;
-import com.its.mergeplan_v1.entity.AccountsCategory;
-import com.its.mergeplan_v1.entity.AccountsItem;
-import com.its.mergeplan_v1.entity.AccountsItemP;
-import com.its.mergeplan_v1.entity.AccountsItemView;
+import com.its.mergeplan_v1.entity.*;
 import com.its.mergeplan_v1.repository.AccountsCategoryRepository;
 import com.its.mergeplan_v1.repository.AccountsItemPRepository;
 import com.its.mergeplan_v1.repository.AccountsItemRepository;
 import com.its.mergeplan_v1.repository.AccountsItemViewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -120,5 +120,23 @@ public class AccountsService {
     @Transactional
     public List<AccountsItemP> getItemByPlannerId(Long plannerId){
         return accountsItemPRepository.findByPlannerId(plannerId);
+    }
+
+    @Transactional(readOnly = true)
+    public GetAccountsItem oneItem(User user, Long account_id){
+        Optional<AccountsItem> accountsItem = accountsItemRepository.findById(account_id);
+
+        GetAccountsItem getAccountsItem = new GetAccountsItem();
+        getAccountsItem.setId(accountsItem.get().getId());
+        getAccountsItem.setUserId(accountsItem.get().getUserId());
+        getAccountsItem.setItemDateTime(accountsItem.get().getItemDatetime());
+        getAccountsItem.setItemFirst(accountsItem.get().getItemFirst());
+        getAccountsItem.setItemSecond(accountsItem.get().getItemSecond());
+        getAccountsItem.setItemTitle(accountsItem.get().getItemTitle());
+        getAccountsItem.setItemPrice(accountsItem.get().getItemPrice());
+        getAccountsItem.setPlannerId(accountsItem.get().getPlannerId());
+
+        return getAccountsItem;
+
     }
 }
