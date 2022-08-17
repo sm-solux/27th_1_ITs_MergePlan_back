@@ -25,10 +25,10 @@ public class User {
     private long id;
 
     @Column(nullable = false)
-    private String username;  // 아이디
+    private String nickname;  // 아이디
 
     @Column(nullable = false)
-    private String username_k;  // 유저 이름
+    private String username;  // 유저 이름
 
     @Column(nullable = false)
     private String password;

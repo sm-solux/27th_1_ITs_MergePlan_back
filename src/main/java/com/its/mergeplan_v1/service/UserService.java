@@ -20,7 +20,7 @@ public class UserService {
         //user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         //user.setRole("ROLE_USER");
         User user = postUser.toEntity(postUser.getUsername(),
-                postUser.getUsername_k(),
+                postUser.getNickname(),
                 bCryptPasswordEncoder.encode(postUser.getPassword()),
                 postUser.getRole(),
                 postUser.getBirthday(),
