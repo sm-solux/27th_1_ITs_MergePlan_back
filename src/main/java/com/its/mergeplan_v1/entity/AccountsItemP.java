@@ -29,9 +29,9 @@ public class AccountsItemP {
 //    @Column(name = "create_datetime")
 //    private Timestamp createDatetime;
 //
-//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    @Column(name = "item_datetime")
-//    private Date itemDatetime;
+    @JsonFormat(pattern = "MM월 dd일 HH시 mm분")
+    @Column(name = "item_datetime")
+    private Date itemDatetime;
 //
 //    @Column(name = "item_kind")
 //    private boolean itemKind;

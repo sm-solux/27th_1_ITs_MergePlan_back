@@ -52,7 +52,9 @@ public class PlannerController {
     @GetMapping("/auth/planner/item/{plan_id}")  // 플랜 하나 조회하기
     public GetPlanner onePlan(Authentication authentication, @PathVariable Long plan_id){
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-        return plannerService.onePlan(principalDetails.getUser(), plan_id);
+        GetPlanner getPlanner = plannerService.onePlan(principalDetails.getUser(), plan_id);
+        getPlanner.setAccountsItemPs(accountsService.getItemByPlannerId(getPlanner.getId()));
+        return getPlanner;
     }
 
 }
