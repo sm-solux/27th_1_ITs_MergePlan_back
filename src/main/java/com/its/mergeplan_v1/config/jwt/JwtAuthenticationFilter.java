@@ -44,7 +44,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             System.out.println(user);
 
             // 토큰 만들기
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getNickname(), user.getPassword());
 
             // PrincipalDetailsService의 loadUserByUsername()함수가 실행됨. 정상이면 authentication이 리턴됨 (username의 정보만 가져가고, password정보는 스프링이 알아서 처리해줌)
             // db에 있는 username과 password가 일치한다는 뜻!!
@@ -54,7 +54,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 
             PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-            System.out.println("로그인 완료, 유저이름: " + principalDetails.getUser().getUsername());
+            System.out.println("로그인 완료, 유저이름: " + principalDetails.getUser().getNickname());
 
             // authentication객체를 session영역에 저장한다(권한 관리를 시큐리티가 해주기 위해서 -> 편하게 하려고)
             return authentication;  // 세션에 저장된다
@@ -81,7 +81,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withSubject("토큰 발급")
                 .withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME ))  // 만료시간(1000=1초)
                 .withClaim("id", principalDetails.getUser().getId())
-                .withClaim("username", principalDetails.getUser().getUsername())
+                .withClaim("nickname", principalDetails.getUser().getNickname())
                 .sign(Algorithm.HMAC512("mergeplan"));  // 내 서버만 아는 고유 시크릿키
 
 //        System.out.println(jwtToken);
